@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Confirmed</title>
+</head>
+<body>
+  <h1>🎉 Email Confirmed Successfully!</h1>
+  <p>Thank you for verifying your email. You can now log in and start using your account.</p>
+  <script>
+    // Optional: Use access token from URL hash if needed
+    const hash = window.location.hash;
+    const params = new URLSearchParams(hash.replace('#', ''));
+    const token = params.get('access_token');
+    console.log('User token:', token);
+  </script>
+</body>
+</html>
