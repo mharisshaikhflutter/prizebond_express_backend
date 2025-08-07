@@ -7,37 +7,50 @@ const path = require('path');
 // ✅ Supabase credentials
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+
+if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+  console.error('❌ Missing Supabase environment variables');
+  process.exit(1);
+}
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 🔧 Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('views')); // Serve static files (html, css, etc.)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'views')));
 
 // 🌐 Home Page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
-// 🌐 Reset Password Form
+// 🌐 Reset Password Page
 app.get('/reset-password', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'reset-password.html'));
 });
 
-// 🔐 Handle Reset Password Submission
+// 🔐 Handle Reset Password Form Submission
 app.post('/reset-password', async (req, res) => {
   const { token, newPassword } = req.body;
 
+  if (!token || !newPassword) {
+    return res.status(400).send('❌ Token and new password are required.');
+  }
+
   try {
-    const { data: session, error: sessionError } = await supabase.auth.setSession({
+    // Set session using token
+    const { error: sessionError } = await supabase.auth.setSession({
       access_token: token,
-      refresh_token: token, // required, but not actually used here
+      refresh_token: token, // required by API, but not used
     });
 
     if (sessionError) throw sessionError;
 
+    // Update user password
     const { error: updateError } = await supabase.auth.updateUser({
       password: newPassword,
     });
@@ -46,7 +59,7 @@ app.post('/reset-password', async (req, res) => {
 
     res.send('✅ Password updated successfully!');
   } catch (error) {
-    console.error(error);
+    console.error('❌ Error resetting password:', error.message || error);
     res.status(400).send('❌ Failed to reset password.');
   }
 });
@@ -56,6 +69,12 @@ app.get('/email-confirmed', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'email-confirmed.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+// 🚀 Start server (only locally, not on Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
+  });
+}
+
+// 👉 Export app for Vercel
+module.exports = app;
