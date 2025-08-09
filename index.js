@@ -35,6 +35,8 @@ app.get("/reset-password", async (req, res) => {
     return res.status(400).send("❌ Missing code");
   }
 
+  console.log("step 1");
+
   // try {
     // Exchange code for token
     const tokenRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=pkce`, {
@@ -49,14 +51,18 @@ app.get("/reset-password", async (req, res) => {
       }),
     });
 
+  console.log("step 2");
     const tokenData = await tokenRes.json();
 
+  console.log("step 3");
     if (!tokenRes.ok) {
       throw new Error(tokenData.error_description || "Token exchange failed");
     }
 
+  console.log("step 4");
     const accessToken = tokenData.access_token;
 
+  console.log("step 5");
     // Redirect to Flutter with token
     return res.redirect(`?access_token=${encodeURIComponent(accessToken)}`);
   // } catch (err) {
