@@ -28,9 +28,41 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
-// 🌐 Reset Password Page
-app.get('/reset-password', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'reset-password.html'));
+app.get("/reset-password", async (req, res) => {
+  const code = req.query.code;
+
+  if (!code) {
+    return res.status(400).send("❌ Missing code");
+  }
+
+  // try {
+    // Exchange code for token
+    const tokenRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=pkce`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: process.env.SUPABASE_KEY,
+      },
+      body: JSON.stringify({
+        code,
+        redirect_uri: "https://prizebond-mauve.vercel.app/reset-password" // Must match Supabase settings
+      }),
+    });
+
+    const tokenData = await tokenRes.json();
+
+    if (!tokenRes.ok) {
+      throw new Error(tokenData.error_description || "Token exchange failed");
+    }
+
+    const accessToken = tokenData.access_token;
+
+    // Redirect to Flutter with token
+    return res.redirect(`${REDIRECT_TO_FLUTTER}?access_token=${encodeURIComponent(accessToken)}`);
+  // } catch (err) {
+  //   console.error("err ${err}");
+  //   return res.status(500).send("❌ Failed to reset password.");
+  // }
 });
 
 // 🔐 Handle Reset Password Form Submission
