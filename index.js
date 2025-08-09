@@ -58,7 +58,7 @@ app.get("/reset-password", async (req, res) => {
     const accessToken = tokenData.access_token;
 
     // Redirect to Flutter with token
-    return res.redirect(`${REDIRECT_TO_FLUTTER}?access_token=${encodeURIComponent(accessToken)}`);
+    return res.redirect(`?access_token=${encodeURIComponent(accessToken)}`);
   // } catch (err) {
   //   console.error("err ${err}");
   //   return res.status(500).send("❌ Failed to reset password.");
