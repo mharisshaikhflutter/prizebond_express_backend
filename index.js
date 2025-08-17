@@ -28,6 +28,22 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
+// 🌐 Support Page
+app.get('/support', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'support.html'));
+});
+
+// 🌐 Marketing Page
+app.get('/marketing', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'marketing.html'));
+});
+
+// 🌐 Privacy Policy Page
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'privacy.html'));
+});
+
+// 🔑 Reset Password (token exchange)
 app.get("/reset-password", async (req, res) => {
   const code = req.query.code;
 
@@ -35,10 +51,7 @@ app.get("/reset-password", async (req, res) => {
     return res.status(400).send("❌ Missing code");
   }
 
-  console.log("step 1");
-
-  // try {
-    // Exchange code for token
+  try {
     const tokenRes = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=pkce`, {
       method: "POST",
       headers: {
@@ -51,24 +64,18 @@ app.get("/reset-password", async (req, res) => {
       }),
     });
 
-  console.log("step 2");
     const tokenData = await tokenRes.json();
-
-  console.log("step 3");
     if (!tokenRes.ok) {
       throw new Error(tokenData.error_description || "Token exchange failed");
     }
 
-  console.log("step 4");
     const accessToken = tokenData.access_token;
 
-  console.log("step 5");
-    // Redirect to Flutter with token
     return res.redirect(`?access_token=${encodeURIComponent(accessToken)}`);
-  // } catch (err) {
-  //   console.error("err ${err}");
-  //   return res.status(500).send("❌ Failed to reset password.");
-  // }
+  } catch (err) {
+    console.error("❌ Error:", err.message);
+    return res.status(500).send("❌ Failed to reset password.");
+  }
 });
 
 // 🔐 Handle Reset Password Form Submission
@@ -80,15 +87,13 @@ app.post('/reset-password', async (req, res) => {
   }
 
   try {
-    // Set session using token
     const { error: sessionError } = await supabase.auth.setSession({
       access_token: token,
-      refresh_token: token, // required by API, but not used
+      refresh_token: token,
     });
 
     if (sessionError) throw sessionError;
 
-    // Update user password
     const { error: updateError } = await supabase.auth.updateUser({
       password: newPassword,
     });

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features - PrizeBond</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-600">PrizeBond</h1>
+      <nav>
+        <a href="/" class="mx-3 text-gray-700 hover:text-green-600">Home</a>
+        <a href="/support" class="mx-3 text-gray-700 hover:text-green-600">Support</a>
+        <a href="/privacy" class="mx-3 text-gray-700 hover:text-green-600">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Marketing Hero -->
+  <section class="py-16 bg-gradient-to-r from-green-500 to-green-700 text-white text-center">
+    <h2 class="text-4xl font-bold mb-4">Features That Make Us Unique</h2>
+    <p class="text-lg">Discover why PrizeBond is the #1 choice for managing prize bonds.</p>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="py-16 max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="p-6 bg-white shadow rounded-xl">
+        <h3 class="text-xl font-bold mb-2">📊 Track Bonds</h3>
+        <p>Store and organize all your prize bonds in one secure place.</p>
+      </div>
+      <div class="p-6 bg-white shadow rounded-xl">
+        <h3 class="text-xl font-bold mb-2">🔔 Get Alerts</h3>
+        <p>Instant notifications when new results are announced.</p>
+      </div>
+      <div class="p-6 bg-white shadow rounded-xl">
+        <h3 class="text-xl font-bold mb-2">📱 Easy Access</h3>
+        <p>Available anytime, anywhere on iOS and Android.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center bg-white">
+    <h3 class="text-2xl md:text-3xl font-bold mb-6">Download PrizeBond Today!</h3>
+    <a href="#" class="bg-green-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow hover:bg-green-700 transition">Download App</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-6 text-center">
+    <p>&copy; <span id="year"></span> PrizeBond. All rights reserved.</p>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

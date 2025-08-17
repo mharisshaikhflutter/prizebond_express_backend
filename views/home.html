@@ -1,14 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Home Page</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrizeBond App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <div class="container">
-    <h1>🏡 Welcome to Your App 06</h1>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-600">PrizeBond</h1>
+      <nav>
+        <a href="/support" class="mx-3 text-gray-700 hover:text-green-600">Support</a>
+        <a href="/marketing" class="mx-3 text-gray-700 hover:text-green-600">Features</a>
+        <a href="/privacy" class="mx-3 text-gray-700 hover:text-green-600">Privacy</a>
+      </nav>
+    </div>
+  </header>
 
-  </div>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-green-500 to-green-700 text-white py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Your Smart Prize Bond Manager</h2>
+      <p class="text-lg md:text-xl mb-8">
+        Track, manage, and check results of your prize bonds easily with our mobile app.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="bg-black text-white px-6 py-3 rounded-lg shadow hover:bg-gray-800 transition">Download on App Store</a>
+        <a href="#" class="bg-white text-green-700 px-6 py-3 rounded-lg shadow hover:bg-gray-100 transition">Get it on Google Play</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Why Choose PrizeBond?</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold mb-3">📊 Easy Tracking</h4>
+          <p>Keep all your bonds organized in one place with automatic updates.</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold mb-3">🔔 Instant Notifications</h4>
+          <p>Get notified as soon as new results are announced—never miss a win!</p>
+        </div>
+        <div class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="text-xl font-semibold mb-3">🌐 Secure & Cloud Based</h4>
+          <p>Your data is stored securely and synced across all your devices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center bg-white">
+    <h3 class="text-2xl md:text-3xl font-bold mb-6">Start managing your Prize Bonds today!</h3>
+    <a href="#" class="bg-green-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow hover:bg-green-700 transition">Download Now</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <div class="mt-4 md:mt-0">
+        <a href="/privacy" class="mx-2 hover:text-white">Privacy Policy</a>
+        <a href="/support" class="mx-2 hover:text-white">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

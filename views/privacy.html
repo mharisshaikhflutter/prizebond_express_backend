@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - PrizeBond</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Navbar -->
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-600">PrizeBond</h1>
+      <nav>
+        <a href="/" class="mx-3 text-gray-700 hover:text-green-600">Home</a>
+        <a href="/support" class="mx-3 text-gray-700 hover:text-green-600">Support</a>
+        <a href="/marketing" class="mx-3 text-gray-700 hover:text-green-600">Features</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Privacy Hero -->
+  <section class="py-16 bg-gradient-to-r from-green-500 to-green-700 text-white text-center">
+    <h2 class="text-4xl font-bold mb-4">Privacy Policy</h2>
+    <p class="text-lg">Your privacy is our top priority.</p>
+  </section>
+
+  <!-- Policy Content -->
+  <section class="py-16 max-w-4xl mx-auto px-6 leading-relaxed">
+    <h3 class="text-2xl font-bold mb-6">Information We Collect</h3>
+    <p class="mb-4">
+      PrizeBond does not require personal accounts to use the app. However, we may collect limited technical information:
+    </p>
+    <ul class="list-disc ml-6 mb-4">
+      <li>Crash reports and performance data (via <strong>Firebase Crashlytics</strong>).</li>
+      <li>App usage statistics (via <strong>Firebase Analytics</strong>).</li>
+      <li>Notification tokens for push messages (via <strong>Firebase Messaging</strong>).</li>
+      <li>Camera access and text recognition (processed on-device with <strong>Google ML Kit</strong>).</li>
+      <li>Local preferences and offline storage (via <strong>Hive</strong> and <strong>SharedPreferences</strong>).</li>
+    </ul>
+
+    <h3 class="text-2xl font-bold mb-6">How We Use Data</h3>
+    <p class="mb-4">
+      The information collected is used to:
+    </p>
+    <ul class="list-disc ml-6 mb-4">
+      <li>Improve app performance and reliability.</li>
+      <li>Deliver notifications and updates you opt into.</li>
+      <li>Provide features such as camera-based text recognition and PDF generation.</li>
+      <li>Analyze anonymous usage trends to make the app better.</li>
+    </ul>
+
+    <h3 class="text-2xl font-bold mb-6">Security</h3>
+    <p class="mb-4">
+      Sensitive processing, such as camera input and ML Kit text recognition, happens entirely on your device.
+      We do not upload or share your scanned images or files. All communication with third-party services (like Firebase) is encrypted.
+    </p>
+
+    <h3 class="text-2xl font-bold mb-6">Children’s Privacy</h3>
+    <p class="mb-4">
+      This app is not directed toward children under the age of 13, and we do not knowingly collect personal information from children.
+    </p>
+
+    <h3 class="text-2xl font-bold mb-6">Contact</h3>
+    <p>
+      If you have questions about our privacy practices, email us at 
+      <a href="mailto:mharisshaikhflutter@gmail.com" class="text-green-600 hover:underline">mharisshaikhflutter@gmail.com</a>.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-6 text-center">
+    <p>&copy; <span id="year"></span> PrizeBond. All rights reserved.</p>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
